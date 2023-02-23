@@ -1,7 +1,7 @@
 
 .hero__section{
-    background: var(--hero-bg);
-    height: 450px;
+    background-color:  #a6dace;
+    height: 470px;
     
 }
 
@@ -35,4 +35,37 @@
 }
 .hero__content{
     padding-top: 45px;
+}
+.timer__count{
+    background: var(--primary-color);
+    height: 275px;
+}
+
+.timer__count img{
+    width: 70% !important;
+    height:  70% !important;
+    object-fit: contain;
+}
+.clock__top-conten h4{
+    color: white;
+}
+.clock__top-conten h3{
+    color: white;
+}
+.store__btn{
+    background: white;
+    color: var(--primary-color);
+    font-weight: 600;
+   
+}
+.store__btn a:hover{
+    color: var(--primary-color);
+}
+
+
+@media only screen and (max-width :786px) {
+    .hero__content {
+        padding-top: 0;
+        margin-bottom: 40px;
+    }
 }

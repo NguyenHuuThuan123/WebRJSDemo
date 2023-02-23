@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useRef, useEffect} from 'react'
 import './header.css'
 
 import{motion} from 'framer-motion'
@@ -25,7 +25,36 @@ const nav__links = [
 
 
 const Header = () => {
-  return <header className="header">
+
+    const headerRef = useRef(null); //header cuon trang
+    const menuRef = useRef(null); //menu home
+
+    const stickyHeaderFunc =() => {
+      window.addEventListener('scroll',  ()=>{
+        if(document.body.scrollTop > 80 || document.documentElement.scrollTop >80)
+        {
+          headerRef.current.classList.add('sticky__header')
+        } else {
+          headerRef.current.classList.remove('sticky__header')
+        }
+        
+      })
+    }
+
+
+    useEffect (()=>{
+        stickyHeaderFunc();
+
+        return() => window.removeEventListener("scroll", stickyHeaderFunc);
+        
+    });
+
+      const mennuToggle = () => menuRef.current.classList.toggle('active__menu') //menu home
+
+
+
+  return (
+  <header className="header" ref={headerRef}>
     <Container>
     <Row>
       <div className="nav__wrapper">
@@ -35,7 +64,7 @@ const Header = () => {
             <h1>Multimart</h1>
           </div>
         </div>
-        <div className="navition">
+        <div className="navigation" ref={menuRef} onClick= {mennuToggle}>
             <ul className='menu'>
                 {
                   nav__links.map((item,index) => (
@@ -49,32 +78,37 @@ const Header = () => {
             </ul>
         </div>
 
-        <div className="nav__icons">
+    <div className="nav__icons">
+
           <span className="fav__icon">
             <i class="ri-heart-2-line"></i>
             <span className="badge">1</span>
           </span>
           
-          <span className="cart__icons"><i 
-          class="ri-shopping-bag-line"></i>
+          <span className="cart__icons">
+            <i class="ri-shopping-bag-line"></i>
             <span className="badge">1</span>       
           </span>
 
-            <span>
-              <motion.img whileTap={{ scale: 1.2 }} src={userIcon}  alt=""/>
+            <span >
+              <motion.img whileTap={{ scale: 1.2 }} src={userIcon} 
+               alt=""/>
             </span>
-        </div>
-        
+
           <div className="mobile__menu">
-            <span><i class="ri-menu-add-line"></i>
+            <span onClick={mennuToggle} >
+              <i class="ri-menu-add-line"></i>
             </span>
           </div>
+      </div>
+        
+          
       </div>
     </Row>
     </Container>
 
   </header>
-   
+  )
 }
 
 export default Header
