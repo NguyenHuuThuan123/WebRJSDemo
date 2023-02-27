@@ -13,7 +13,7 @@ const Footer = () => {
         <Col lg="4">  
         <div className="logo">       
           <div>
-          <h1 className="text-white">Mutimark</h1>
+          <h1 className="text-white"> </h1>
           </div>
         </div>
         <p className="footer__text mt-4 ">

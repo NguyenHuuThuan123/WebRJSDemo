@@ -124,6 +124,7 @@ const Home = () => {
             </Row>
           </Container>
         </section>
+        
  </Helmet>;
 };
 

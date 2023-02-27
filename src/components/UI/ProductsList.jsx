@@ -5,12 +5,10 @@ const ProductsList = ({data}) => {
   return (
     <>
     {
-        data ?.map((item) => (
-            <ProductsCart item ={item}/>
+        data?.map((item, index) => (
+            <ProductsCart item ={item} key={index}/>
         ))
     }
-     
-        
     </>
   );    
 };

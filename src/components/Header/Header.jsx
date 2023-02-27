@@ -1,12 +1,11 @@
 import React,{useRef, useEffect} from 'react'
 import './header.css'
-
 import{motion} from 'framer-motion'
-
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/images/eco-logo.png'
 import userIcon from '../../assets/images/user-icon.png'
 import { Container, Row } from 'reactstrap'
+import { useSelector } from 'react-redux'
 
 const nav__links = [
   {
@@ -21,13 +20,17 @@ const nav__links = [
     path: 'cart',
     display: 'Cart'
   },
+  
+
 ]
 
 
 const Header = () => {
 
     const headerRef = useRef(null); //header cuon trang
-    const menuRef = useRef(null); //menu home
+    const totalQuantify = useSelector((state)=> state.cart.totalQuantify) // icon quality cart
+    const menuRef = useRef(null); //menu home 
+    
 
     const stickyHeaderFunc =() => {
       window.addEventListener('scroll',  ()=>{
@@ -82,12 +85,12 @@ const Header = () => {
 
           <span className="fav__icon">
             <i class="ri-heart-2-line"></i>
-            <span className="badge">1</span>
+            <span className="badge">0</span>
           </span>
           
           <span className="cart__icons">
             <i class="ri-shopping-bag-line"></i>
-            <span className="badge">1</span>       
+            <span className="badge">0{totalQuantify}</span>       
           </span>
 
             <span >
@@ -95,14 +98,12 @@ const Header = () => {
                alt=""/>
             </span>
 
-          <div className="mobile__menu">
+            <div className="mobile__menu">
             <span onClick={mennuToggle} >
               <i class="ri-menu-add-line"></i>
             </span>
           </div>
-      </div>
-        
-          
+      </div>        
       </div>
     </Row>
     </Container>
