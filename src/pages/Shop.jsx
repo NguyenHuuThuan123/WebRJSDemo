@@ -5,7 +5,7 @@ import React, {useState} from 'react'
  import '../styles/shop.css';
 import products from '../assets/data/products';
 import ProductsList from '../components/UI/ProductsList';
-import ProductDetail from './ProductDetail';
+
   const Shop = () => {
 
   const[productsData,setProductData] = useState(products);
@@ -59,7 +59,7 @@ if(filterValue === "NArr"){
       <Container>
         <Row>
           
-          <Col lg='3' md='3'>
+          <Col lg='3' md='6'>
             <div className="filter__widget">
               <select onChange={handleFilter}>
               <option>Filter by category</option>
@@ -71,8 +71,8 @@ if(filterValue === "NArr"){
             </div>
           </Col>
 
-          <Col lg='3' md='3'>
-          <div className="filter__widget">
+          <Col lg='3' md='6'>
+          <div className="filter__widget" >
               <select >
               <option>Sort by</option>
                 <option value="ascending">Ascending</option>
@@ -81,7 +81,7 @@ if(filterValue === "NArr"){
             </div>
           </Col>
           
-          <Col lg='6' md='6'>
+          <Col lg='6' md='12'>
           <div className="search__box">          
                 <input type ="text" placeholder="Search......"
                  onChange={handleSearch}></input>        
