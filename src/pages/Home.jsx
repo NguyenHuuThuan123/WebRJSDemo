@@ -8,7 +8,7 @@ import "../styles/home.css";
 import { Container, Row, Col } from 'reactstrap';
 import heroimg from '../assets/images/SHome.jpg'; //anh logo home
 
-import Services from '../services/Services';
+import Services from '../components/services/Services';
 
 import ProductsList from '../components/UI/ProductsList';
 

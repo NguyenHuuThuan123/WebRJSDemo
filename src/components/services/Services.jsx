@@ -2,7 +2,7 @@ import React from 'react'
 import { Container,Row,Col } from 'reactstrap'
 import { motion } from "framer-motion";
 import "./Services.css";
-import servicesData from "../assets/data/serviceData";
+import servicesData from "../../assets/data/serviceData";
 const Services = () => {
   return <section className="services">
     <Container>
