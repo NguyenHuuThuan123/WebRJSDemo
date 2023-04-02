@@ -95,5 +95,25 @@ const getWishList = async () => {
     const response = await axios.get(`${base_url}user/wishlist`, config);
     return response.data;
 };
+const applyCoupon = async (coupon) => {
+    const response = await axios.post(`${base_url}user/cart/applycoupon`, coupon, config);
+    return response.data;
+};
 
-export const userService = { register, login, refreshToken, logout, forgotPasswordToken, resetPassword, changePassword, getUserInfo, updateUser, addToCart, getUserCart, deleteProductfromCart, getWishList }
+const createOrder = async (values) => {
+    const response = await axios.post(`${base_url}user/cart/cash-order`, values, config);
+    return response.data;
+};
+
+const getOrdersByUser = async () => {
+    const response = await axios.get(`${base_url}user/get-orders`, config);
+    return response.data;
+};
+
+const getDetailOrderByUserId = async (id) => {
+    const response = await axios.get(`${base_url}user/getorderbyuser/${id}`, config);
+    return response.data;
+};
+
+
+export const userService = { register, login, refreshToken, logout, forgotPasswordToken, resetPassword, changePassword, getUserInfo, updateUser, addToCart, getUserCart, deleteProductfromCart, getWishList, applyCoupon, createOrder, getDetailOrderByUserId, getOrdersByUser }

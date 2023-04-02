@@ -36,9 +36,9 @@ const Header = () => {
       window.addEventListener('scroll',  ()=>{
         if(document.body.scrollTop > 80 || document.documentElement.scrollTop >80)
         {
-          headerRef.current.classList.add('sticky__header')
+          headerRef.current.List.add('sticky__header')
         } else {
-          headerRef.current.classList.remove('sticky__header')
+          headerRef.current.List.remove('sticky__header')
         }
         
       })
@@ -52,7 +52,7 @@ const Header = () => {
         
     });
 
-      const mennuToggle = () => menuRef.current.classList.toggle('active__menu') //menu home
+      const mennuToggle = () => menuRef.current.List.toggle('active__menu') //menu home
 
       const navigateToCart = () => {
             navigate('/cart')

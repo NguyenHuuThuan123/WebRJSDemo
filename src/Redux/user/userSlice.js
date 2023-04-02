@@ -117,7 +117,44 @@ export const deleteProductfromCart = createAsyncThunk("user/delete-product-cart"
     }
 }
 );
+//order
+export const applyCoupon = createAsyncThunk("user/apply-coupon", async (coupon, thunkAPI) => {
+    try {
+        console.log(coupon);
+        return await userService.applyCoupon(coupon);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+    }
+}
+);
+export const createOrder = createAsyncThunk("user/create-order", async (values, thunkAPI) => {
+    try {
+        console.log(values);
+        return await userService.createOrder(values);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+    }
+}
+);
 
+
+export const getOrderByUser = createAsyncThunk("user/get-orders", async (_, thunkAPI) => {
+    try {
+        return await userService.getOrdersByUser();
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+    }
+}
+);
+
+export const getDetailOrderByUserId = createAsyncThunk("user/get-detail-order", async (id, thunkAPI) => {
+    try {
+        return await userService.getDetailOrderByUserId(id);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+    }
+}
+);
 export const getWishList = createAsyncThunk("user/get-wishlist", async (thunkAPI) => {
     try {
         return await userService.getWishList();
@@ -350,6 +387,58 @@ export const authSlice = createSlice({
                 state.message = action.error;
                 state.isLoading = false;
             })
+            .addCase(applyCoupon.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(applyCoupon.fulfilled, (state, action) => {
+                state.isError = false;
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.coupon = action.payload;
+                if (state.isSuccess === true) {
+                    toast.success("Apply Successfully");
+                }
+            })
+            .addCase(applyCoupon.rejected, (state, action) => {
+                state.isError = true;
+                state.isSuccess = false;
+                state.message = action.error;
+                state.isLoading = false;
+                if (state.isError === true) {
+                    toast.error("You have already used this coupon");
+                }
+            })
+            .addCase(getOrderByUser.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getOrderByUser.fulfilled, (state, action) => {
+                state.isError = false;
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.orderByUser = action.payload;
+            })
+            .addCase(getOrderByUser.rejected, (state, action) => {
+                state.isError = true;
+                state.isSuccess = false;
+                state.message = action.error;
+                state.isLoading = false;
+            })
+            .addCase(getDetailOrderByUserId.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getDetailOrderByUserId.fulfilled, (state, action) => {
+                state.isError = false;
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.detailOrder = action.payload;
+            })
+            .addCase(getDetailOrderByUserId.rejected, (state, action) => {
+                state.isError = true;
+                state.isSuccess = false;
+                state.message = action.error;
+                state.isLoading = false;
+            })
+            
     }
 })
 

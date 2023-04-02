@@ -8,7 +8,7 @@ import { useSelector, useDispatch  } from "react-redux";
 import {Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import * as yup from "yup";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import {toast} from 'react-toastify';
 import CustomInput from "../components/CustomInput";
 
@@ -76,7 +76,9 @@ const Login = () => {
                   onBlr={formik.handleBlur("password")}
                   val={formik.values.password}
                 />
-
+                <div className="error mt-2">
+                  {formik.touched.password && formik.errors.password}
+                </div>
                   <button type="submit" className="but__btn auth__btn">Login</button>
                     <p>Create account <Link to='/signup'>hear</Link></p>
                 </Form>
